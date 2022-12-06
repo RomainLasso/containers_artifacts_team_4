@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripviewer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tripviewer
+  template:
+    metadata:
+      labels:
+        app: tripviewer
+    spec:
+      containers:
+      - name: tripviewer
+        image: registryfiv5480.azurecr.io/tripinsights/tripviewer:1.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        env:
+        - name: USERPROFILE_API_ENDPOINT
+          value: http://userprofile:5001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tripviewer
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  selector:
+    app: tripviewer

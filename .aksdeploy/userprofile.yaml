@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userprofile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userprofile
+  template:
+    metadata:
+      labels:
+        app: userprofile
+    spec:
+      containers:
+      - name: userprofile
+        image: registryfiv5480.azurecr.io/tripinsights/userprofile:1.0
+        env:
+        - name: SQL_USER
+          value: sqladminfIv5480
+        - name: SQL_PASSWORD
+          value: Password123!
+        - name: SQL_SERVER
+          value: sqlserverfiv5480.database.windows.net
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - name: http
+          containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userprofile
+spec:
+  ports:
+  - protocol: TCP
+    port: 5001
+    targetPort: 80
+  selector:
+    app: userprofile
