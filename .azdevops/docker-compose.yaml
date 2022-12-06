@@ -1,31 +1,77 @@
 version: '3'
+
+networks:
+  hack:
+    external: true
+
 services:
   poi:
     build:
       context: ../src/poi
       dockerfile: ../../dockerfiles/Dockerfile_3
-    image: tripinsights/poi:1.0
+    image: registryfiv5480.azurecr.io/tripinsights/poi:1.0
+    environment:
+      SQL_USER: sa
+      SQL_PASSWORD: Password123!
+      SQL_SERVER: sql-server
+      ASPNETCORE_ENVIRONMENT: Local
+    ports:
+    - 5001:80
+    networks:
+    - hack
 
   trips:
     build:
       context: ../src/trips
       dockerfile: ../../dockerfiles/Dockerfile_4
-    image: tripinsights/trips:1.0
+    image: registryfiv5480.azurecr.io/tripinsights/trips:1.0
+    environment:
+      SQL_USER: sa
+      SQL_PASSWORD: Password123!
+      SQL_SERVER: sql-server
+      OPENAPI_DOCS_URI: http://localhost:80
+    ports:
+    - 5002:80
+    networks:
+    - hack
   
   user-java:
     build:
       context: ../src/user-java
       dockerfile: ../../dockerfiles/Dockerfile_0
-    image: tripinsights/user-java:1.0
-  
+    image: registryfiv5480.azurecr.io/tripinsights/user-java:1.0
+    environment:
+      SQL_USER: sa
+      SQL_PASSWORD: Password123!
+      SQL_SERVER: sql-server
+    ports:
+    - 5003:80
+    networks:
+    - hack
+
   userprofile:
     build:
       context: ../src/userprofile
       dockerfile: ../../dockerfiles/Dockerfile_2
-    image: tripinsights/userprofile:1.0
+    image: registryfiv5480.azurecr.io/tripinsights/userprofile:1.0
+    environment:
+      SQL_USER: sa
+      SQL_PASSWORD: Password123!
+      SQL_SERVER: sql-server
+    ports:
+    - 5004:80
+    networks:
+    - hack
 
   tripviewer:
     build:
       context: ../src/tripviewer
       dockerfile: ../../dockerfiles/Dockerfile_1
-    image: tripinsights/tripviewer:1.0
+    image: registryfiv5480.azurecr.io/tripinsights/tripviewer:1.0
+    environment:
+      TRIPS_API_ENDPOINT: http://trips
+      USERPROFILE_API_ENDPOINT: http://userprofile
+    ports:
+    - 5005:80
+    networks:
+    - hack
