@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hack-ingress
-  namespace: ingress-basic
+  namespace: api
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -16,6 +16,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: userprofile.api.svc.cluster.local
+            name: userprofile
             port:
               number: 80
