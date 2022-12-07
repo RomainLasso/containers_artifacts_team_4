@@ -21,6 +21,11 @@ spec:
           value: sqladminfIv5480
         - name: SQL_SERVER
           value: sqlserverfiv5480.database.windows.net
+        - name: SQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: SQLPASSWORD
+              key: SQLPASSWORD
         resources:
           requests:
             cpu: 100m
