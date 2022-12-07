@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: userprofile
+  name: poi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: userprofile
+      app: poi
   template:
     metadata:
       labels:
-        app: userprofile
+        app: poi
     spec:
       containers:
-      - name: userprofile
-        image: registryfiv5480.azurecr.io/tripinsights/userprofile:1.0
+      - name: poi
+        image: registryfiv5480.azurecr.io/tripinsights/poi:1.0
         env:
         - name: SQL_USER
           value: sqladminfIv5480
@@ -43,11 +43,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: userprofile
+  name: poi
 spec:
   ports:
   - protocol: TCP
     port: 80
     targetPort: http
   selector:
-    app: userprofile
+    app: poi
