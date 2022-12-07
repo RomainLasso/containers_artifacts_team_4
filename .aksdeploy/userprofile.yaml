@@ -24,7 +24,7 @@ spec:
         - name: SQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: SQLPASSWORD
+              name: appsecrets
               key: SQLPASSWORD
         resources:
           requests:
