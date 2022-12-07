@@ -1,0 +1,55 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-rolebinding-editor
+  namespace: web
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: web-role-editor
+subjects:
+- kind: Group
+  namespace: web
+  name: b1188af3-e89e-4dcb-ac63-5b89b5a5f691 # web-dev
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-rolebinding-reader
+  namespace: web
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: web-role-reader
+subjects:
+- kind: Group
+  namespace: web
+  name: 69f4d29b-5bcf-4e7a-b4ae-e854add16ca3 # api-dev
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-rolebinding-editor
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: api-role-editor
+subjects:
+- kind: Group
+  namespace: api
+  name: 69f4d29b-5bcf-4e7a-b4ae-e854add16ca3 # api-dev
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-rolebinding-reader
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: api-role-reader
+subjects:
+- kind: Group
+  namespace: api
+  name: b1188af3-e89e-4dcb-ac63-5b89b5a5f691 # web-dev
