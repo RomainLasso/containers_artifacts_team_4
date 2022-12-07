@@ -1,91 +1,91 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: hack-ingress-userprofile
-#   namespace: api
-#   annotations:
-#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#     nginx.ingress.kubernetes.io/use-regex: "true"
-#     nginx.ingress.kubernetes.io/rewrite-target: /api/user/$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#   - http:
-#       paths:
-#       - path: /api/user(/|$)(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: userprofile
-#             port:
-#               number: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: hack-ingress-trips
-#   namespace: api
-#   annotations:
-#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#     nginx.ingress.kubernetes.io/use-regex: "true"
-#     nginx.ingress.kubernetes.io/rewrite-target: /api/trips/$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#   - http:
-#       paths:
-#       - path: /api/trips(/|$)(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: trips
-#             port:
-#               number: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: hack-ingress-poi
-#   namespace: api
-#   annotations:
-#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#     nginx.ingress.kubernetes.io/use-regex: "true"
-#     nginx.ingress.kubernetes.io/rewrite-target: /api/poi/$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#   - http:
-#       paths:
-#       - path: /api/poi(/|$)(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: poi
-#             port:
-#               number: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: hack-ingress-user-java
-#   namespace: api
-#   annotations:
-#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#     nginx.ingress.kubernetes.io/use-regex: "true"
-#     nginx.ingress.kubernetes.io/rewrite-target: /api/user-java/$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#   - http:
-#       paths:
-#       - path: /api/user-java(/|$)(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: user-java
-#             port:
-#               number: 80
-# ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hack-ingress-userprofile
+  namespace: api
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /api/user/$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api/user(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: userprofile
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hack-ingress-trips
+  namespace: api
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /api/trips/$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api/trips(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: trips
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hack-ingress-poi
+  namespace: api
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /api/poi/$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api/poi(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: poi
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hack-ingress-user-java
+  namespace: api
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /api/user-java/$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api/user-java(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: user-java
+            port:
+              number: 80
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
