@@ -38,50 +38,48 @@ spec:
             name: trips
             port:
               number: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: hack-ingress-poi
-#   namespace: api
-#   annotations:
-#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#     nginx.ingress.kubernetes.io/use-regex: "true"
-#     nginx.ingress.kubernetes.io/rewrite-target: /api/poi/$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#   - http:
-#       paths:
-#       - path: /api/poi(/|$)(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: poi
-#             port:
-#               number: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: hack-ingress-user-java
-#   namespace: api
-#   annotations:
-#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#     nginx.ingress.kubernetes.io/use-regex: "true"
-#     nginx.ingress.kubernetes.io/rewrite-target: /api/user-java/$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#   - http:
-#       paths:
-#       - path: /api/user-java(/|$)(.*)
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: user-java
-#             port:
-#               number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hack-ingress-poi
+  namespace: api
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/backend-path-prefix: "/api/poi"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api/poi
+        pathType: Prefix
+        backend:
+          service:
+            name: poi
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hack-ingress-user-java
+  namespace: api
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/backend-path-prefix: "/user-java"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api/user-java
+        pathType: Prefix
+        backend:
+          service:
+            name: user-java
+            port:
+              number: 80
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
