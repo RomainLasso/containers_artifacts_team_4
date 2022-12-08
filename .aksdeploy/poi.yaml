@@ -4,7 +4,7 @@ metadata:
   name: poi
   namespace: api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: poi
