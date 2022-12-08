@@ -27,7 +27,7 @@ spec:
         - name: USERPROFILE_API_ENDPOINT
           value: http://20.168.147.25/api/user
         - name: TRIPS_API_ENDPOINT
-          value: http://trips.api.svc.cluster.local
+          value: http://20.168.147.25/api/trips
 ---
 apiVersion: v1
 kind: Service
