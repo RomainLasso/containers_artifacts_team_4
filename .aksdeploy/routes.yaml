@@ -7,6 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/merg: /
 spec:
   ingressClassName: nginx
   rules:
@@ -16,7 +17,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: userprofile
+            name: userprofile.api
             port:
               number: 80
 # ---
