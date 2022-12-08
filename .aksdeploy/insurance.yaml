@@ -15,7 +15,7 @@ spec:
         app: insurance
     spec:
       containers:
-      - image: "registryfiv5480.azurecr.io/insurance:1.0"
+      - image: registryfiv5480.azurecr.io/insurance:1.0
         imagePullPolicy: Always
         name: insurance
         ports:
@@ -27,8 +27,8 @@ spec:
             cpu: 100m
             memory: 128Mi
           limits:
-            cpu: 250m
-            memory: 256Mi
+            cpu: 1000m
+            memory: 1024Mi
 ---
 apiVersion: v1
 kind: Service
