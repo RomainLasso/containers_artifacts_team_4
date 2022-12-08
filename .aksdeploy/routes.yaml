@@ -66,6 +66,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
     appgw.ingress.kubernetes.io/backend-path-prefix: "/api/user-java"
+    appgw.ingress.kubernetes.io/health-probe-path: "/api/user-java/healthcheck"
 spec:
   rules:
   - http:
